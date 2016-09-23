@@ -1,3 +1,9 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ea8d9593d34854b479ccab3925a7e0bea884bf825c7482714160e50da3081d88
-size 263
+# network
+=======
+Input highway database (TransCAD dbd)  
+
+###Where can get the networks
+------
+Until we find a spot in the cloud to host the networks, you can find them at the following location on the SANDAG network.
+
+T:\projects\sr12\OWP\sr11ome\Networks
