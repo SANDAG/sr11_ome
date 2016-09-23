@@ -1,0 +1,7 @@
+State Route 11 / Otay Mesa East Port of Entry Traffic Model
+
+The Binational T&R forecasting model developed for the SR11 study involved multiple, interconnected steps and was built on existing SANDAG regional travel model, and extensive travel survey data. The result was a modeling tool that estimated traffic shares between the different POEs in the San Diego–Tijuana region based on observed border crossing traffic volumes and border-crossing travel characteristics.
+
+The binational T&R model used the aggregate border-crossing traffic growth projections from the econometric-based Traffic Growth Model introduced in Section 3.5 of the main report to forecast future binational traffic at each POE in the region. These binational traffic growth forecasts were combined with local traffic growth projections based on the future land use plans and socioeconomic trends discussed in Section 3. The binational T&R model process is shown in Figure 1.
+
+A typical trip-based urban transportation model has four steps: trip generation, trip distribution, mode choice, and network assignment. The binational T&R model is a highway-only model that simulates average weekday PV and CV trips (i.e., this model does not include pedestrian border crossings). The cross-border vehicle trip generation and trip distribution are based on O-D surveys conducted by SANDAG in 2011 and 2012 and described in Section 2.2 of the main report.
