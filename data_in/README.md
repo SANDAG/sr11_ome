@@ -3,6 +3,6 @@
 Scenario Data
 
 
-## Where is my data?
+## Where is my data for this scenario?
 =======
-T:\projects\sr12\OWP\sr11ome\Data
+T:\projects\sr12\OWP\sr11ome\Data\2017\Data_17Baseline
