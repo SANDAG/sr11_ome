@@ -35,7 +35,7 @@ for alts = 1 to scenarios.length do
 
         // Input Files
     
-    parentfolder = "E:\\SANDAG\\_17BaselineConstrained2\\"
+    parentfolder = "T:\\projects\\sr12\\OWP\\sr11ome\\Model\\"
     data_in_dir =  parentfolder + "data_in\\"
     data_out_dir = parentfolder + "data_out\\"
     
@@ -377,7 +377,8 @@ while time_period < 24 do
 	
 	assignment_table = data_out_dir + scenarios[alts] + "_assign_" + string(time_period) + ".bin"
 	network_file = data_out_dir + scenarios[alts] + "_network_" + string(time_period) + ".net"
-	od_matrix = "E:\\SANDAG\\" + "Data_" + scenarios[alts] + "\\Trips_" + string(time_period) + ".mtx"
+	//od_matrix = "E:\\SANDAG\\" + "Data_" + scenarios[alts] + "\\Trips_" + string(time_period) + ".mtx"
+    od_matrix = data_in_dir + "\\Trips_" + string(time_period) + ".mtx"
 	
 	map = RunMacro("G30 new map", highway_layer, "False")
 	layers = GetDBlayers(highway_layer)

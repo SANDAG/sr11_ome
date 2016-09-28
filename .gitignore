@@ -26,6 +26,10 @@ network/*.r0
 network/*.r1
 network/*.sty
 
+data_out/*.bin
+data_out/*.dcb
+data_out/*.net
+
 # Packages #
 ############
 # it's better to unpack these files and commit the raw source
