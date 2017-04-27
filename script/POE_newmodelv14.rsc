@@ -58,7 +58,7 @@ for alts = 1 to scenarios.length do
 	do_toll = 1
 	do_ome = 1
 	
-	max_xing_time = 20
+	max_xing_time = 120
 	max_iterations = 40
 	convergence_criteria = 0.01
 	cnt_poe_links = 11
