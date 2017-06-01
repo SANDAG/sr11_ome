@@ -35,7 +35,7 @@ for alts = 1 to scenarios.length do
 
         // Input Files
     
-    parentfolder = "E:\\SANDAG\\_40BaselineConstrained2\\"
+    parentfolder = "T:\\projects\\sr12\\OWP\\sr11ome\\runs\\2040_baseline_constrained_no_stack_ome_no_om_penalty\\"
     data_in_dir =  parentfolder + "data_in\\"
     data_out_dir = parentfolder + "data_out\\"
     
@@ -48,7 +48,7 @@ for alts = 1 to scenarios.length do
 	
     assgn_file_path = data_out_dir + scenarios[alts] + "_da_assign.bin" 
 	
-        // Set Output Table File
+    // Set Output Table File
 	log_file_path = data_out_dir + scenarios[alts] + "_poe_traffic.csv"
 	
 	run_file_path = data_out_dir + scenarios[alts] + "_run_file.csv"
@@ -377,7 +377,7 @@ while time_period < 24 do
 	
 	assignment_table = data_out_dir + scenarios[alts] + "_assign_" + string(time_period) + ".bin"
 	network_file = data_out_dir + scenarios[alts] + "_network_" + string(time_period) + ".net"
-	od_matrix = "E:\\SANDAG\\" + "Data_" + scenarios[alts] + "\\Trips_" + string(time_period) + ".mtx"
+	od_matrix = "T:\\projects\\sr12\\OWP\\sr11ome\\runs\\2040_baseline_constrained_no_stack_ome_no_om_penalty\\data_in\\Trips_" + string(time_period) + ".mtx"
 	
 	map = RunMacro("G30 new map", highway_layer, "False")
 	layers = GetDBlayers(highway_layer)
@@ -629,7 +629,7 @@ While converged = 0 do
 		lane_avail = max_lanes[gen_ctr][2] - sentri_lanes
 		if (lane_sum > lane_avail) then do
 
-			lanes[ready_ctr][2] = round((lanes[ready_ctr][2] * (lane_avail) / lane_sum) *2, 0) /2
+			lanes[ready_ctr][2] = round((lanes[ready_ctr][2] * (lane_avail) / lane_sum) * (1.0 / inc_lanes[ready_ctr]), 0) / (1.0 / inc_lanes[ready_ctr])
 			stk_lanes[ready_ctr][2] = min(lanes[ready_ctr][2], stk_lanes[ready_ctr][2])
 			adj_cap = Max((rates[ready_ctr][2] * (lanes[ready_ctr][2]-stk_lanes[ready_ctr][2]))+(stk_rates[ready_ctr][2] * stk_lanes[ready_ctr][2]),1)
 			ready_wait = Max((0.5 * (avg_vol[poe][ready_type] - adj_cap) * (60/adj_cap)), 0)
@@ -639,7 +639,7 @@ While converged = 0 do
 				ready_wait = Max((0.5 * (avg_vol[poe][ready_type] - adj_cap) * (60/adj_cap)), 0)
 			end
 
-			lanes[gen_ctr][2] = round((lanes[gen_ctr][2] * (lane_avail) / lane_sum *2), 0) /2
+			lanes[gen_ctr][2] = round((lanes[gen_ctr][2] * (lane_avail) / lane_sum * (1.0 / inc_lanes[gen_ctr])), 0) / (1.0 / inc_lanes[gen_ctr])
 			stk_lanes[gen_ctr][2] = min(lanes[gen_ctr][2], stk_lanes[gen_ctr][2])
 			adj_cap = Max((rates[gen_ctr][2] * (lanes[gen_ctr][2]-stk_lanes[gen_ctr][2]))+(stk_rates[gen_ctr][2] * stk_lanes[gen_ctr][2]),1)
 			gen_wait = Max((0.5 * (avg_vol[poe][gen_type] - adj_cap) * (60/adj_cap)), 0)
@@ -726,11 +726,11 @@ While converged = 0 do
 		lane_avail = max_lanes[gen_ctr][2] - sentri_lanes
 		if (lane_sum > lane_avail) then do
 
-			lanes[ready_ctr][2] = round((lanes[ready_ctr][2] * (lane_avail) / lane_sum)*2, 0)/2
+			lanes[ready_ctr][2] = round((lanes[ready_ctr][2] * (lane_avail) / lane_sum)*(1.0 / inc_lanes[ready_ctr]), 0)/(1.0 / inc_lanes[ready_ctr])
 			adj_cap = Max((rates[ready_ctr][2] * (lanes[ready_ctr][2]-stk_lanes[ready_ctr][2]))+(stk_rates[ready_ctr][2] * stk_lanes[ready_ctr][2]),1)
 			ready_wait = Max((0.5 * (avg_vol[poe][ready_type] - adj_cap) * (60/adj_cap)), 0)
 
-			lanes[gen_ctr][2] = round((lanes[gen_ctr][2] * (lane_avail) / lane_sum)*2, 0)/2
+			lanes[gen_ctr][2] = round((lanes[gen_ctr][2] * (lane_avail) / lane_sum)* (1.0 / inc_lanes[gen_ctr]), 0)/ (1.0 / inc_lanes[gen_ctr])
 			adj_cap = Max((rates[gen_ctr][2] * (lanes[gen_ctr][2]-stk_lanes[gen_ctr][2]))+(stk_rates[gen_ctr][2] * stk_lanes[gen_ctr][2]),1)
 			gen_wait = Max((0.5 * (avg_vol[poe][gen_type] - adj_cap) * (60/adj_cap)), 0)
 
@@ -778,11 +778,11 @@ While converged = 0 do
 		lane_avail = max_lanes[gp_ctr][2]
 		if (lane_sum > lane_avail) then do
 
-			lanes[fast_ctr][2] = round((lanes[fast_ctr][2] * (lane_avail) / lane_sum)*2, 0)/2
+			lanes[fast_ctr][2] = round((lanes[fast_ctr][2] * (lane_avail) / lane_sum)*(1.0 / inc_lanes[fast_ctr]), 0)/ (1.0 / inc_lanes[fast_ctr])
 			adj_cap = Max((rates[fast_ctr][2] * (lanes[fast_ctr][2]-stk_lanes[fast_ctr][2]))+(stk_rates[fast_ctr][2] * stk_lanes[fast_ctr][2]),1)
 			fast_wait = Max((0.5 * (avg_vol[poe][fast_type] - adj_cap) * (60/adj_cap)), 0)
 
-			lanes[gp_ctr][2] = round((lanes[gp_ctr][2] * (lane_avail) / lane_sum)*2, 0)/2
+			lanes[gp_ctr][2] = round((lanes[gp_ctr][2] * (lane_avail) / lane_sum) * (1.0 / inc_lanes[gp_ctr]), 0)/ (1.0 / inc_lanes[gp_ctr])
 			adj_cap = Max((rates[gp_ctr][2] * (lanes[gp_ctr][2]-stk_lanes[gp_ctr][2]))+(stk_rates[gp_ctr][2] * stk_lanes[gp_ctr][2]),1)
 			gp_wait = Max((0.5 * (avg_vol[poe][gp_type] - adj_cap) * (60/adj_cap)), 0)
 
@@ -930,11 +930,11 @@ While converged = 0 do
 
 				if (lane_sum > lane_avail) then do
 
-					lanes[sentri_ctr][2] = round((lanes[sentri_ctr][2] * (lane_avail) / lane_sum) *2, 0) /2
+					lanes[sentri_ctr][2] = round((lanes[sentri_ctr][2] * (lane_avail) / lane_sum) *(1.0 / inc_lanes[sentri_ctr]), 0) / (1.0 / inc_lanes[sentri_ctr])
 					adj_cap = Max((rates[sentri_ctr][2] * (lanes[sentri_ctr][2]-stk_lanes[sentri_ctr][2]))+(stk_rates[sentri_ctr][2] * stk_lanes[sentri_ctr][2]),1)
 					sentri_wait = Max((0.5 * (avg_vol[poe][sentri_type] - adj_cap) * (60/adj_cap)), 0)
 
-					lanes[ready_ctr][2] = round((lanes[ready_ctr][2] * (lane_avail) / lane_sum) *2, 0) /2
+					lanes[ready_ctr][2] = round((lanes[ready_ctr][2] * (lane_avail) / lane_sum) * (1.0 / inc_lanes[ready_ctr]), 0) / (1.0 / inc_lanes[ready_ctr])
 					stk_lanes[ready_ctr][2] = min(lanes[ready_ctr][2], stk_lanes[ready_ctr][2])
 					adj_cap = Max((rates[ready_ctr][2] * (lanes[ready_ctr][2]-stk_lanes[ready_ctr][2]))+(stk_rates[ready_ctr][2] * stk_lanes[ready_ctr][2]),1)
 					ready_wait = Max((0.5 * (avg_vol[poe][ready_type] - adj_cap) * (60/adj_cap)), 0)
@@ -944,7 +944,7 @@ While converged = 0 do
 						ready_wait = Max((0.5 * (avg_vol[poe][ready_type] - adj_cap) * (60/adj_cap)), 0)
 					end
 
-					lanes[gen_ctr][2] = round((lanes[gen_ctr][2] * (lane_avail) / lane_sum *2), 0) /2
+					lanes[gen_ctr][2] = round((lanes[gen_ctr][2] * (lane_avail) / lane_sum * (1.0 / inc_lanes[gen_ctr])), 0) / (1.0 / inc_lanes[gen_ctr])
 					stk_lanes[gen_ctr][2] = min(lanes[gen_ctr][2], stk_lanes[gen_ctr][2])
 					adj_cap = Max((rates[gen_ctr][2] * (lanes[gen_ctr][2]-stk_lanes[gen_ctr][2]))+(stk_rates[gen_ctr][2] * stk_lanes[gen_ctr][2]),1)
 					gen_wait = Max((0.5 * (avg_vol[poe][gen_type] - adj_cap) * (60/adj_cap)), 0)
@@ -1050,7 +1050,7 @@ While converged = 0 do
 				lane_avail = max_lanes[gen_ctr][2] - sentri_lanes
 				if (lane_sum > lane_avail) then do
 
-					lanes[ready_ctr][2] = round((lanes[ready_ctr][2] * (lane_avail) / lane_sum) *2, 0) /2
+					lanes[ready_ctr][2] = round((lanes[ready_ctr][2] * (lane_avail) / lane_sum) * (1.0 / inc_lanes[ready_ctr]), 0) / (1.0 / inc_lanes[ready_ctr])
 					stk_lanes[ready_ctr][2] = min(lanes[ready_ctr][2], stk_lanes[ready_ctr][2])
 					adj_cap = Max((rates[ready_ctr][2] * (lanes[ready_ctr][2]-stk_lanes[ready_ctr][2]))+(stk_rates[ready_ctr][2] * stk_lanes[ready_ctr][2]),1)
 					ready_wait = Max((0.5 * (avg_vol[poe][ready_type] - adj_cap) * (60/adj_cap)), 0)
@@ -1060,7 +1060,7 @@ While converged = 0 do
 						ready_wait = Max((0.5 * (avg_vol[poe][ready_type] - adj_cap) * (60/adj_cap)), 0)
 					end
 
-					lanes[gen_ctr][2] = round((lanes[gen_ctr][2] * (lane_avail) / lane_sum *2), 0) /2
+					lanes[gen_ctr][2] = round((lanes[gen_ctr][2] * (lane_avail) / lane_sum * (1.0 / inc_lanes[gen_ctr])), 0) / (1.0 / inc_lanes[gen_ctr])
 					stk_lanes[gen_ctr][2] = min(lanes[gen_ctr][2], stk_lanes[gen_ctr][2])
 					adj_cap = Max((rates[gen_ctr][2] * (lanes[gen_ctr][2]-stk_lanes[gen_ctr][2]))+(stk_rates[gen_ctr][2] * stk_lanes[gen_ctr][2]),1)
 					gen_wait = Max((0.5 * (avg_vol[poe][gen_type] - adj_cap) * (60/adj_cap)), 0)
@@ -1157,11 +1157,11 @@ While converged = 0 do
 			
 			if (lane_sum > lane_avail) then do
 
-				lanes[fast_ctr][2] = round((lanes[fast_ctr][2] * (lane_avail) / lane_sum)*2, 0)/2
+				lanes[fast_ctr][2] = round((lanes[fast_ctr][2] * (lane_avail) / lane_sum)* (1.0 / inc_lanes[fast_ctr]), 0)/ (1.0 / inc_lanes[fast_ctr])
 				adj_cap = Max((rates[fast_ctr][2] * (lanes[fast_ctr][2]-stk_lanes[fast_ctr][2]))+(stk_rates[fast_ctr][2] * stk_lanes[fast_ctr][2]),1)
 				fast_wait = Max((0.5 * (avg_vol[poe][fast_type] - adj_cap) * (60/adj_cap)), 0)
 
-				lanes[gp_ctr][2] = round((lanes[gp_ctr][2] * (lane_avail) / lane_sum)*2, 0)/2
+				lanes[gp_ctr][2] = round((lanes[gp_ctr][2] * (lane_avail) / lane_sum)* (1.0 / inc_lanes[gp_ctr]), 0)/ (1.0 / inc_lanes[gp_ctr])
 				adj_cap = Max((rates[gp_ctr][2] * (lanes[gp_ctr][2]-stk_lanes[gp_ctr][2]))+(stk_rates[gp_ctr][2] * stk_lanes[gp_ctr][2]),1)
 				gp_wait = Max((0.5 * (avg_vol[poe][gp_type] - adj_cap) * (60/adj_cap)), 0)
 
