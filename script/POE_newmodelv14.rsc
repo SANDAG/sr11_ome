@@ -34,7 +34,7 @@ scenarios = {"40Baseline"}
 for alts = 1 to scenarios.length do
     // Input Files
     
-    parentfolder = "T:\\projects\\sr12\\OWP\\sr11ome\\runs\\2040_baseline_constrained_no_stack_ome_no_om_penalty\\"
+    parentfolder = "T:\\projects\\sr12\\OWP\\sr11ome\\runs\\2040_baseline_constrained_no_stack_ome_no_om_penalty_4x4\\"
     data_in_dir =  parentfolder + "data_in\\"
     data_out_dir = parentfolder + "data_out\\"
     
@@ -59,7 +59,7 @@ for alts = 1 to scenarios.length do
     
     max_xing_time = 20
     max_iterations = 40
-    convergence_criteria = 0.01
+    convergence_criteria = 0.001
     cnt_poe_links = 11
     if (do_ome) then cnt_poe_links = 18
 
@@ -375,7 +375,7 @@ for alts = 1 to scenarios.length do
 
         assignment_table = data_out_dir + scenarios[alts] + "_assign_" + string(time_period) + ".bin"
         network_file = data_out_dir + scenarios[alts] + "_network_" + string(time_period) + ".net"
-        od_matrix = "T:\\projects\\sr12\\OWP\\sr11ome\\runs\\2040_baseline_constrained_no_stack_ome_no_om_penalty\\data_in\\Trips_" + string(time_period) + ".mtx"
+        od_matrix = "T:\\projects\\sr12\\OWP\\sr11ome\\runs\\2040_baseline_constrained_no_stack_ome_no_om_penalty_4x4\\data_in\\Trips_" + string(time_period) + ".mtx"
     
         map = RunMacro("G30 new map", highway_layer, "False")
         layers = GetDBlayers(highway_layer)
@@ -834,7 +834,7 @@ for alts = 1 to scenarios.length do
                             wait_time[poe][lantyp] = Max((0.5 * (avg_vol[poe][lantyp] - adj_cap) * (60/adj_cap)), 0) + FF_TIME[counter] + DELAY[counter]
                         end
                         while (wait_time[poe][lantyp] - FF_TIME[counter] - DELAY[counter] > max_wait[counter]) and (lanes[counter][2] + stk_lanes[counter][2] < max_insp_booths) do
-                            if (lanes[counter][2] < max_lanes[counter][2] - 1) then lanes[counter][2] = lanes[counter][2] + inc_lanes[counter]
+                            if (lanes[counter][2] < max_lanes[counter][2] - sentri_lanes) then lanes[counter][2] = lanes[counter][2] + inc_lanes[counter]
                             else stk_lanes[counter][2] = allow_stack[counter] * (stk_lanes[counter][2] + inc_lanes[counter])
                             adj_cap = Max((rates[counter][2] * (lanes[counter][2]-stk_lanes[counter][2]))+(stk_rates[counter][2] * stk_lanes[counter][2]),1)
                             wait_time[poe][lantyp] = Max((0.5 * (avg_vol[poe][lantyp] - adj_cap) * (60/adj_cap)), 0) + FF_TIME[counter] + DELAY[counter]
