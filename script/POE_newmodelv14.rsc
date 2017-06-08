@@ -27,7 +27,7 @@
 Macro "POEDelay"    // Initialization
 RunMacro("TCB Init")
 
-scenarios = {"2040_baseline_constrained_no_stack_ome_no_om_penalty"}
+scenarios = {"2040_baseline_constrained_2_no_OME_stack"}
 
 //set up loop for scenarios
 
@@ -75,24 +75,10 @@ for alts = 1 to scenarios.length do
         sb_trk_min_toll = 5
     end
     
-    //Setup base processing time
-    if alts = 99 then do  //for 2017
-        FF_TIME = {7.2,6.52,6.12,6.12,7.2,6.52,6.12,6.12,12,10,8,7.2,6.52,6.12,6.12,12,10,8}
-        Add_Delay = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
-        PM_PEN = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
-    end
-    
-    if alts = 2 then do  //for 2030
-        FF_TIME = {7.2,6.52,6.12,6.12,7.2,6.52,6.12,6.12,12,10,8,7.2,6.52,6.12,6.12,12,10,8}
-        Add_Delay = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
-        PM_PEN = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
-    end
-    
-    if alts = 1 then do  //for 2040
-        FF_TIME = {7.2,6.52,6.12,6.12,7.2,6.52,6.12,6.12,12,10,8,7.2,6.52,6.12,6.12,12,10,8}
-        Add_Delay = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
-        PM_PEN = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
-    end
+    //Setup base processing time for 2040
+    FF_TIME = {7.2,6.52,6.12,6.12,7.2,6.52,6.12,6.12,12,10,8,7.2,6.52,6.12,6.12,12,10,8}
+    Add_Delay = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+    PM_PEN = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
     
     DELAY = CopyArray(Add_Delay)
 
@@ -478,7 +464,7 @@ for alts = 1 to scenarios.length do
             Opts.Global.Iterations = 7
             Opts.Global.[Number of Classes] = 14
             Opts.Global.[Class PCEs] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-            Opts.Global.[Class VOIs] = {0.125, 0.125, 0.395, 0.112, 0.112, 0.168, 0.142, 0.142, 0.21, 0.312, 0.542, 0.312, 0.542, 0.166}  
+            Opts.Global.[Class VOIs] = {0.125, 0.395, 0.395, 0.112, 0.168, 0.168, 0.142, 0.21, 0.21, 0.312, 0.542, 0.312, 0.542, 0.166}  
             Opts.Global.[Cost Function File] = "bpr.vdf"
             Opts.Global.[VDF Defaults] = {, , 0.15, 4, 0}
             Opts.Output.[Flow Table] = assignment_table
