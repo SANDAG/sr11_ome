@@ -27,7 +27,7 @@
 Macro "POEDelay"    // Initialization
 RunMacro("TCB Init")
 
-scenarios = {"2040_baseline_constrained_2_no_OME_stack"}
+scenarios = {"2040_baseline_constrained_no_stack_ome_no_om_penalty_vot"}
 
 //set up loop for scenarios
 
@@ -464,7 +464,7 @@ for alts = 1 to scenarios.length do
             Opts.Global.Iterations = 7
             Opts.Global.[Number of Classes] = 14
             Opts.Global.[Class PCEs] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-            Opts.Global.[Class VOIs] = {0.125, 0.125, 0.395, 0.112, 0.112, 0.168, 0.142, 0.142, 0.21, 0.312, 0.542, 0.312, 0.542, 0.166}  
+            Opts.Global.[Class VOIs] = {0.125, 0.125, 0.395, 0.112, 0.112, 0.168, 0.142, 0.142, 0.21, 0.312, 0.542, 0.312, 0.542, 0.166}
             Opts.Global.[Cost Function File] = "bpr.vdf"
             Opts.Global.[VDF Defaults] = {, , 0.15, 4, 0}
             Opts.Output.[Flow Table] = assignment_table
@@ -519,7 +519,7 @@ for alts = 1 to scenarios.length do
                         //CHECK CONVERGENCE AGAINST PREVIOUS VOLUME
                     
                         if (iteration > 0) then do 
-                            if avg_vol[i][j] > 0 then if (Abs((avg_vol[i][j] - prev_vol[i][j]) / avg_vol[i][j]) < 0.02)|Abs(avg_vol[i][j] - prev_vol[i][j]) < 2 then toll_flag = toll_flag + 1
+                            if avg_vol[i][j] > 0 then if (Abs((avg_vol[i][j] - prev_vol[i][j]) / avg_vol[i][j]) < 0.02)|Abs(avg_vol[i][j] - prev_vol[i][j]) < 1 then toll_flag = toll_flag + 1
                             if avg_vol[i][j] = 0 and prev_vol[i][j] = 0 then toll_flag = toll_flag + 1
                             if iteration > max_iterations|toll_flag = cnt_poe_links then converged = 1
                         end
