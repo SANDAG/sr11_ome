@@ -27,7 +27,7 @@
 Macro "POEDelay"    // Initialization
 RunMacro("TCB Init")
 
-scenarios = {"2040_baseline_constrained_no_stack_ome_no_om_penalty_vot"}
+scenarios = {"2040_baseline_constrained_no_stack_ome_no_om_penalty_2x2"}
 
 //set up loop for scenarios
 
