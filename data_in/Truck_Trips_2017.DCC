@@ -1,0 +1,10 @@
+
+0 header
+"FromZone",I,1,11,0,11,0
+"ToZone",I,2,11,0,11,0
+"ArHour",I,3,11,0,11,0
+"Type",C,4,8,0,8,0
+"Dir",C,5,4,0,4,0
+"Lane",C,6,6,0,6,0
+"OrigWght",R,7,15,0,15,4
+"RevWght",R,8,15,0,15,4

@@ -1,0 +1,13 @@
+
+0 header
+"Hour",I,1,11,0,11,0
+"SENTRI",C,2,7,0,7,0
+"READY",C,3,7,0,7,0
+"General",C,4,7,0,7,0
+"PctSENTRI",R,5,15,0,15,4
+"NBGenFac",R,6,15,0,15,4
+"NBSpeFac",R,7,15,0,15,4
+"SBGenFac",R,8,15,0,15,4
+"NBFastFac",R,9,15,0,15,4
+"NBGPFac",R,10,15,0,15,4
+"SBTrkFac",R,11,15,0,15,4
